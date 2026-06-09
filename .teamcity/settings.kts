@@ -26,7 +26,7 @@ object CorbobTest : BuildType({
         param("env.Git_Branch", "%teamcity.build.vcs.branch.TeamCityPRTesting_VcsRoot%")
         param("teamcity.git.fetchAllHeads", "true")
         password("env.GITHUB_PAT", "%system.GitHubPAT%", display = ParameterDisplay.HIDDEN, readOnly = true)
-	boolean("env.TK_USE_VNEXT_REQUIREMENTS", "false")
+	checkbox("env.TK_USE_VNEXT_REQUIREMENTS", description = "Use vNext Requirements", uncheckedValue = "false", checkedValue = "true")
     }
 
     vcs {
