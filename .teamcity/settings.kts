@@ -23,24 +23,24 @@ object Constants {
 }
 
 project {
-    template(TestKitchen_DefaultsTemplate)
-    template(TestKitchen_BuildPullRequestsTemplate)
-    buildType(TestKitchen_Intune)
-    buildType(TestKitchen_AdHoc)
-    buildType(TestKitchen_AdHocFreeForm)
-    buildType(TestKitchen_Chocolatey)
-    buildType(TestKitchen_ChocolateyLicensed)
-    buildType(TestKitchen_ChocolateyAgent)
-    buildType(TestKitchen_ChocolateyCentralManagement)
-    buildType(TestKitchen_Proxy)
-    buildType(TestKitchen_SoundnessChecks)
-    buildType(TestKitchen_LicensingPortal)
-    buildType(TestKitchen_CommunityRepository)
+    template(CurlyPancake_DefaultsTemplate)
+    template(CurlyPancake_BuildPullRequestsTemplate)
+    buildType(CurlyPancake_Intune)
+    buildType(CurlyPancake_AdHoc)
+    buildType(CurlyPancake_AdHocFreeForm)
+    buildType(CurlyPancake_Chocolatey)
+    buildType(CurlyPancake_ChocolateyLicensed)
+    buildType(CurlyPancake_ChocolateyAgent)
+    buildType(CurlyPancake_ChocolateyCentralManagement)
+    buildType(CurlyPancake_Proxy)
+    buildType(CurlyPancake_SoundnessChecks)
+    buildType(CurlyPancake_LicensingPortal)
+    buildType(CurlyPancake_CommunityRepository)
 }
 
-object TestKitchen_DefaultsTemplate : Template({
+object CurlyPancake_DefaultsTemplate : Template({
     name = "Test Kitchen Build Template"
-    id = AbsoluteId("TestKitchen_DefaultsTemplate")
+    id = AbsoluteId("CurlyPancake_DefaultsTemplate")
 
     artifactRules = """
         +:testresults/**/*.*
@@ -189,9 +189,9 @@ object TestKitchen_DefaultsTemplate : Template({
     }
 })
 
-object TestKitchen_BuildPullRequestsTemplate : Template({
+object CurlyPancake_BuildPullRequestsTemplate : Template({
     name = "Test Kitchen Build Pull Requests Template"
-    id = AbsoluteId("TestKitchen_BuildPullRequestsTemplate")
+    id = AbsoluteId("CurlyPancake_BuildPullRequestsTemplate")
 
     triggers {
         vcs {
@@ -200,10 +200,10 @@ object TestKitchen_BuildPullRequestsTemplate : Template({
     }
 })
 
-object TestKitchen_Intune : BuildType({
-    id = AbsoluteId("TestKitchen_Intune")
+object CurlyPancake_Intune : BuildType({
+    id = AbsoluteId("CurlyPancake_Intune")
     name = "Intune"
-    templates(AbsoluteId("TestKitchen_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+    templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
 
     maxRunningBuilds = 1
 
@@ -232,26 +232,26 @@ object TestKitchen_Intune : BuildType({
     }
 })
 
-object TestKitchen_AdHoc : BuildType({
-    id = AbsoluteId("TestKitchen_AdHoc")
+object CurlyPancake_AdHoc : BuildType({
+    id = AbsoluteId("CurlyPancake_AdHoc")
     name = "Ad Hoc"
-    templates(AbsoluteId("TestKitchen_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+    templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
 })
 
-object TestKitchen_AdHocFreeForm : BuildType({
-    id = AbsoluteId("TestKitchen_AdHocFreeForm")
+object CurlyPancake_AdHocFreeForm : BuildType({
+    id = AbsoluteId("CurlyPancake_AdHocFreeForm")
     name = "Ad Hoc (Free-form Suite)"
-    templates(AbsoluteId("TestKitchen_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+    templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
 
     params {
         text("TestSuite", "", label = "Test Suite", description = "Enter the Test Kitchen suite name, or a regular expression matching several suites, to run", allowEmpty = false, display = ParameterDisplay.PROMPT)
     }
 })
 
-object TestKitchen_Chocolatey : BuildType({
-    id = AbsoluteId("TestKitchen_Chocolatey")
+object CurlyPancake_Chocolatey : BuildType({
+    id = AbsoluteId("CurlyPancake_Chocolatey")
     name = "1 Chocolatey"
-    templates(AbsoluteId("TestKitchen_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+    templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
 
     params {
         text("TestSuite", "chocolatey-windows-")
@@ -288,10 +288,10 @@ object TestKitchen_Chocolatey : BuildType({
     }
 })
 
-object TestKitchen_ChocolateyLicensed : BuildType({
-    id = AbsoluteId("TestKitchen_ChocolateyLicensed")
+object CurlyPancake_ChocolateyLicensed : BuildType({
+    id = AbsoluteId("CurlyPancake_ChocolateyLicensed")
     name = "2 Chocolatey Licensed"
-    templates(AbsoluteId("TestKitchen_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+    templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
 
     params {
         text("TestSuite", "chocolatey-licensed-windows-")
@@ -345,10 +345,10 @@ object TestKitchen_ChocolateyLicensed : BuildType({
     }
 })
 
-object TestKitchen_ChocolateyAgent : BuildType({
-    id = AbsoluteId("TestKitchen_ChocolateyAgent")
+object CurlyPancake_ChocolateyAgent : BuildType({
+    id = AbsoluteId("CurlyPancake_ChocolateyAgent")
     name = "3 Chocolatey Agent"
-    templates(AbsoluteId("TestKitchen_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+    templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
 
     params {
         text("TestSuite", "chocolatey-service-windows-")
@@ -410,10 +410,10 @@ object TestKitchen_ChocolateyAgent : BuildType({
     }
 })
 
-object TestKitchen_ChocolateyCentralManagement : BuildType({
-    id = AbsoluteId("TestKitchen_ChocolateyCentralManagement")
+object CurlyPancake_ChocolateyCentralManagement : BuildType({
+    id = AbsoluteId("CurlyPancake_ChocolateyCentralManagement")
     name = "4 Chocolatey Central Management"
-    templates(AbsoluteId("TestKitchen_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+    templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
 
     params {
         text("TestSuite", "ccm-windows-")
@@ -492,10 +492,10 @@ object TestKitchen_ChocolateyCentralManagement : BuildType({
     }
 })
 
-object TestKitchen_Proxy : BuildType({
-    id = AbsoluteId("TestKitchen_Proxy")
+object CurlyPancake_Proxy : BuildType({
+    id = AbsoluteId("CurlyPancake_Proxy")
     name = "Proxy"
-    templates(AbsoluteId("TestKitchen_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+    templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
 
     params {
         select("TestSuite", "chocolatey-windows-", label = "Test Suite", description = "Select the Test Kitchen suite to run", display = ParameterDisplay.PROMPT, options = listOf("Chocolatey Agent" to "chocolatey-service-windows-", "Chocolatey Licensed" to "chocolatey-licensed-windows-", "Chocolatey" to "chocolatey-windows-"))
@@ -507,10 +507,10 @@ object TestKitchen_Proxy : BuildType({
     }
 })
 
-object TestKitchen_SoundnessChecks : BuildType({
-    id = AbsoluteId("TestKitchen_SoundnessChecks")
+object CurlyPancake_SoundnessChecks : BuildType({
+    id = AbsoluteId("CurlyPancake_SoundnessChecks")
     name = "Soundness Checks"
-    templates(AbsoluteId("TestKitchen_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+    templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
 
     params {
         text("TestSuite", "soundness-windows-")
@@ -519,10 +519,10 @@ object TestKitchen_SoundnessChecks : BuildType({
     }
 })
 
-object TestKitchen_LicensingPortal : BuildType({
-    id = AbsoluteId("TestKitchen_LicensingPortal")
+object CurlyPancake_LicensingPortal : BuildType({
+    id = AbsoluteId("CurlyPancake_LicensingPortal")
     name = "Licensing Portal"
-    templates(AbsoluteId("TestKitchen_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+    templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
 
     params {
         text("TestSuite", "licensing-portal-windows-")
@@ -559,10 +559,10 @@ object TestKitchen_LicensingPortal : BuildType({
     }
 })
 
-object TestKitchen_CommunityRepository : BuildType({
-    id = AbsoluteId("TestKitchen_CommunityRepository")
+object CurlyPancake_CommunityRepository : BuildType({
+    id = AbsoluteId("CurlyPancake_CommunityRepository")
     name = "Community Repository"
-    templates(AbsoluteId("TestKitchen_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+    templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
 
     params {
         text("TestSuite", "community-repository-windows-")
