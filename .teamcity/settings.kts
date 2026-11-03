@@ -87,7 +87,6 @@ object CurlyPancake_DefaultsTemplate : Template({
         password("env.TK_NUGET_API_KEY", "credentialsJSON:d4da481f-27d8-55f6-9dea-4fdba4b23808", label = "API Key for Repository used by NuGet push testing")
         text("env.TK_NUGET_PUSH_REPO", "https://hermes.chocolatey.org:8443/repository/choco-nuget-testing/", label = "Repository for push NuGet tests", description = "Enter the base URL for the repository to use for NuGet push tests.")
         password("env.TK_ADMIN_PASSWORD", "credentialsJSON:9ec98623-7ded-5f57-a20a-13549887fe38", label = "Administrator password for Test Kitchen instances")
-        select("TestSuite", "ccm-windows-", label = "Test Suite", description = "Select the Test Kitchen suite to run", display = ParameterDisplay.PROMPT, options = listOf("CCM" to "ccm-windows-", "Chocolatey Agent" to "chocolatey-service-windows-", "Chocolatey Licensed" to "chocolatey-licensed-windows-", "Chocolatey" to "chocolatey-windows-", "Soundness Check" to "soundness-windows-", "Licensing Portal" to "licensing-portal-windows-", "Community Repository" to "community-repository-windows-"))
         select("env.TK_LICENSE_TYPE", "business", label = "License Type", options = listOf("business", "architect", "msp", "professional", "trial"), display = ParameterDisplay.PROMPT)
         // Product versions
         text("env.TK_CHOCOLATEY_VERSION", "pre", label = "Chocolatey Version", allowEmpty = false, display = ParameterDisplay.PROMPT)
@@ -236,6 +235,10 @@ object CurlyPancake_AdHoc : BuildType({
     id = AbsoluteId("CurlyPancake_AdHoc")
     name = "Ad Hoc"
     templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+
+    params {
+        select("TestSuite", "ccm-windows-", label = "Test Suite", description = "Select the Test Kitchen suite to run", display = ParameterDisplay.PROMPT, options = listOf("CCM" to "ccm-windows-", "Chocolatey Agent" to "chocolatey-service-windows-", "Chocolatey Licensed" to "chocolatey-licensed-windows-", "Chocolatey" to "chocolatey-windows-", "Soundness Check" to "soundness-windows-", "Licensing Portal" to "licensing-portal-windows-", "Community Repository" to "community-repository-windows-"))
+    }
 })
 
 object CurlyPancake_AdHocFreeForm : BuildType({
