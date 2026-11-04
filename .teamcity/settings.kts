@@ -27,6 +27,7 @@ project {
     template(CurlyPancake_BuildPullRequestsTemplate)
     buildType(CurlyPancake_Intune)
     buildType(CurlyPancake_AdHoc)
+    buildType(CurlyPancake_AdHocFreeForm)
     buildType(CurlyPancake_Chocolatey)
     buildType(CurlyPancake_ChocolateyLicensed)
     buildType(CurlyPancake_ChocolateyAgent)
@@ -233,6 +234,16 @@ object CurlyPancake_Intune : BuildType({
 object CurlyPancake_AdHoc : BuildType({
     id = AbsoluteId("CurlyPancake_AdHoc")
     name = "Ad Hoc"
+    templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
+
+    params {
+        select("TestSuite", "ccm-windows-", label = "Test Suite", description = "Select the Test Kitchen suite to run", display = ParameterDisplay.PROMPT, options = listOf("CCM" to "ccm-windows-", "Chocolatey Agent" to "chocolatey-service-windows-", "Chocolatey Licensed" to "chocolatey-licensed-windows-", "Chocolatey" to "chocolatey-windows-", "Soundness Check" to "soundness-windows-", "Licensing Portal" to "licensing-portal-windows-", "Community Repository" to "community-repository-windows-"))
+    }
+})
+
+object CurlyPancake_AdHocFreeForm : BuildType({
+    id = AbsoluteId("CurlyPancake_AdHocFreeForm")
+    name = "Ad Hoc (Free-form Suite)"
     templates(AbsoluteId("CurlyPancake_DefaultsTemplate"),AbsoluteId("SlackNotificationTemplate"))
 
     params {
